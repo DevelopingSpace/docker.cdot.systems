@@ -1,0 +1,23 @@
+#https://docs.docker.com/registry/deploying/#deploy-your-registry-using-a-compose-file
+
+version: '3'
+
+services:
+  registry:
+    restart: always
+    image: registry:2
+    ports:
+      - 5000:5000
+    environment:
+      REGISTRY_HTTP_TLS_CERTIFICATE: /certs/domain.crt
+      REGISTRY_HTTP_TLS_KEY: /certs/domain.key
+      REGISTRY_AUTH: token
+      REGISTRY_AUTH_TOKEN_REALM: Registry Realm
+      REGISTRY_AUTH_TOKEN_SERVICE: Token services
+      REGISTRY_AUTH_TOKEN_ISSUER: Registry token issuer
+      REGISTRY_AUTH_TOKEN_ROOTCERTBUNDLE: /root/certs/bundle
+    volumes:
+      - /telescope/data:/var/lib/registry
+      - /telescope/certs:/certs
+      - /telescope/auth:/auth
+     
