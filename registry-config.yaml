@@ -7,13 +7,12 @@ log:
     service: registry
 storage:
   cache:
-    blobdescriptor: inmemory # or redis?
+    blobdescriptor: inmemory
   filesystem:
-    rootdirectory: /var/lib/registry
+    rootdirectory: /mnt/docker0storage/registry
 http:
-  addr: 443:5000 # Why the 443 -> https://docs.docker.com/registry/configuration/#letsencrypt
+  addr: 443:5000 # https://docs.docker.com/registry/configuration/#letsencrypt
   host: docker.cdot.systems
-  secret: sUperDuperSecret
   tls:
     certificate: /path/to/x509/public
     key: /path/to/x509/private

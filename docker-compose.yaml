@@ -1,13 +1,18 @@
 #https://docs.docker.com/registry/deploying/#deploy-your-registry-using-a-compose-file
-
-version: '3'
-
 services:
+  nginx:
+    image: "nginx:alpine"
+    ports:
+      - 5043:443
+    restart: unless-stopped
+    links:
+      - registry:registry
+    volumes:
+      - ./auth:/etc/nginx/conf.d
+      - ./auth/nginx.conf:/etc/nginx/nginx.conf:ro
   registry:
     restart: always
     image: registry:2
-    ports:
-      - 5000:5000
     environment:
       REGISTRY_HTTP_TLS_CERTIFICATE: /certs/domain.crt
       REGISTRY_HTTP_TLS_KEY: /certs/domain.key
@@ -20,4 +25,3 @@ services:
       - /telescope/data:/var/lib/registry
       - /telescope/certs:/certs
       - /telescope/auth:/auth
-     
