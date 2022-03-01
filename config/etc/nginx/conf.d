@@ -5,11 +5,6 @@ events {
 }
 
 http {
-
-  upstream docker-registry {
-    server registry:5000;
-  }
-
   ## Set a variable to help us decide if we need to add the
   ## 'Docker-Distribution-Api-Version' header.
   ## The registry always sets this header.
@@ -21,7 +16,7 @@ http {
 
   server {
     listen 443 ssl;
-    server_name docker.cdot.systems;
+    server_name ${DOMAIN};
 
     # SSL
     ssl_certificate /etc/nginx/conf.d/domain.crt;
@@ -54,7 +49,7 @@ http {
       ## See the map directive above where this variable is defined.
       add_header 'Docker-Distribution-Api-Version' $docker_distribution_api_version always;
 
-      proxy_pass                          http://docker-registry;
+      proxy_pass                          http://registry:${PORT};
       proxy_set_header  Host              $http_host;   # required for docker client's sake
       proxy_set_header  X-Real-IP         $remote_addr; # pass on real client's IP
       proxy_set_header  X-Forwarded-For   $proxy_add_x_forwarded_for;
