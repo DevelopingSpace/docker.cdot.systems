@@ -13,29 +13,5 @@ storage:
 http:
   addr: 443:5000 # https://docs.docker.com/registry/configuration/#letsencrypt
   host: docker.cdot.systems
-  tls:
-    certificate: /path/to/x509/public
-    key: /path/to/x509/private
-    letsencrypt:
-      cachefile: /path/to/cache-file
-      email: emailused@letsencrypt.com
-      #hosts: [myregistryaddress.org]
   headers:
     X-Content-Type-Options: [nosniff]
-auth:
- token:
-  realm: token-realm
-  service: token-service
-  issuer: registry-token-issuer
-  rootcertbundle: /root/certs/bundle
-# redis:
-#   addr: localhost:6379
-#   password: asecret
-#   db: 0
-#   dialtimeout: 10ms
-#   readtimeout: 10ms
-#   writetimeout: 10ms
-#   pool:
-#     maxidle: 16
-#     maxactive: 64
-#     idletimeout: 300s
