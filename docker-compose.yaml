@@ -10,6 +10,7 @@ services:
       - /etc/letsencrypt:/etc/letsencrypt
     depends_on: 
       - registry
+    command: /bin/sh -c "while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g 'daemon off;'"
   
   # SSL certificate management for nginx
   certbot:
@@ -26,4 +27,3 @@ services:
     image: registry:2
     volumes:
       - /mnt/docker0storage/registry:/var/lib/registry
-      #- ./config/registry-config.yaml:/config/registry-config.yaml  Untested use of the registry-config.yaml file
