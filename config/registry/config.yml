@@ -1,0 +1,23 @@
+# https://docs.docker.com/registry/configuration/
+
+version: 0.1
+log:
+  level: info # info, warn, error
+  fields:
+    service: registry
+
+storage:
+  cache:
+    blobdescriptor: inmemory
+  filesystem:
+    rootdirectory: /mnt/docker0storage/registry
+
+http:
+  addr: ':5000'
+
+auth:
+  token:
+    issuer: 'Docker auth issuer'
+    realm: 'https://docker.cdot.systems/auth'
+    service: 'Docker registry'
+    rootcertbundle: /etc/letsencrypt/live/docker.cdot.systems/fullchain.pem

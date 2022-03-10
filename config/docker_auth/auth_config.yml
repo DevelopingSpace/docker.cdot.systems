@@ -1,0 +1,28 @@
+# Reference: https://github.com/cesanta/docker_auth/blob/main/examples/reference.yml
+server:
+  addr: ':5001'
+  certificate: '/etc/letsencrypt/live/docker.cdot.systems/fullchain.pem'
+  key: '/etc/letsencrypt/live/docker.cdot.systems/privkey.pem'
+
+token:
+  issuer: 'Docker auth issuer'
+  expiration: 900
+
+users:
+  # Password is specified as a BCrypt hash. Use htpasswd to generate.
+  'admin':
+    password: '' # Need generate a password
+  'telescope-ci':
+    password: '' # Need generate a password
+  '': {}
+
+acl:
+  - match: { account: 'admin' }
+    actions: ['*']
+    comment: 'Admin has full access to everything.'
+  - match: { account: 'telescope-ci' }
+    actions: ['push', 'pull']
+    comment: 'Telescope CI has push and pull access'
+  - match: { account: '' }
+    actions: ['pull']
+    comment: 'Any user has pull access'
