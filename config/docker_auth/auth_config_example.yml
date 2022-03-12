@@ -1,4 +1,6 @@
+# NOTE: this is an example config, meant to be copied to ./auth_config.yml and updated.
 # Reference: https://github.com/cesanta/docker_auth/blob/main/examples/reference.yml
+
 server:
   addr: ':5001'
   certificate: '/etc/letsencrypt/live/docker.cdot.systems/fullchain.pem'
