@@ -21,3 +21,6 @@ auth:
     realm: 'https://docker.cdot.systems/auth'
     service: 'Docker registry'
     rootcertbundle: /etc/letsencrypt/live/docker.cdot.systems/fullchain.pem
+
+proxy:
+  remoteurl: https://registry-1.docker.io/
