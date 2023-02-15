@@ -1,3 +1,8 @@
+## What is this? ##
+CDOT and Developing space organisations use docker containers to run our applications. Once our project is ready to be published, we can "pack it" in a single docker container. Every developer can then take this same container, and run it with all of its components working consistently on their machine. We also use containers to "pack" our applications for a hosted live version. So, when we have developed a new version of the application - all we have to do is replace the old container build with the new one. 
+
+This repository is a public collection of such containers, so that everyone is able to run our application builds.
+
 # docker.cdot.systems
 
 This is the configuration for the CDOT Docker Registry, available at https://docker.cdot.systems.
