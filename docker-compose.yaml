@@ -32,7 +32,6 @@ services:
     volumes:
       - ./certbot/conf:/etc/letsencrypt
       - ./config/registry/config.yml:/etc/docker/registry/config.yml
-      - ./config/registry/daemon.json:/etc/docker/daemon.json
       - /mnt/docker0storage/registry:/var/lib/registry
 
   docker_auth:
